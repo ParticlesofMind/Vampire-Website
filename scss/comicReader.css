@@ -1,0 +1,67 @@
+* {
+  height: auto;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.comicContainer {
+  display: grid;
+  gap: 10px;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 794px;
+  max-height: 1123px;
+}
+
+.page {
+  display: grid;
+  padding: 35px;
+  border: 3px solid black;
+  gap: 15px;
+}
+
+.page img,
+.page video {
+  display: grid;
+  border: 3px solid black;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: fill;
+     object-fit: fill; /* Optional: to cover the entire grid area */
+}
+
+.toolBox {
+  position: fixed;
+  right: -250px; /* Initially hidden off-screen */
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background-color: white;
+  border: 3px solid black;
+  transition: right 0.3s; /* Smooth transition for toggling visibility */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.toggleToolBox {
+  position: absolute;
+  left: -40px; /* Position the toggle button on the left side of the toolBox */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f1f1f1;
+  border: 1px solid #d5d5d5;
+  cursor: pointer;
+}
+
+.toolOptions {
+  padding: 10px;
+  /* Add any additional styling for your tool options here */
+}/*# sourceMappingURL=comicReader.css.map */
