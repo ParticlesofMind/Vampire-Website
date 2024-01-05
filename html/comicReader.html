@@ -1,38 +1,92 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/scss/comicReader.css">
-    <link rel="stylesheet" href="/scss/index.css">
+    <link rel="stylesheet" href="/scss/grid.css">
+    <link rel="stylesheet" href="/scss/universal.css">
 
 </head>
-<body>
 
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="comicReader.html">Comic reader</a></li>
+<body class="bodyGrid">
+    <header class="headerGrid">
+        <nav class="navGrid">
+            <ul class="listItemContainer navGrid">
+                <li class="listItemOne"><a href="index.html" class="listItemOne">Home</a></li>
+                <li class="listItemTwo"><a href="shop.html" class="listItemTwo">Shop</a></li>
+                <li class="listItemThree"><a href="comicReader.html" class="listItemThree">Comic reader</a></li>
+                <li class="listItemFour"><a href="login.html" class="listItemFour">Login</a></li>
             </ul>
         </nav>
-        <button clcass="login-button">Login</button>
     </header>
 
-    <div class="comicContainer"></div>
-    <div id="toolBox" class="toolBox">
-        <button id="toggleToolBox" class="toggleToolBox">&raquo;</button>
-        <div class="toolOptions">
-          <label><input type="radio" name="view-option" checked> Zoom In</label>
-          <label><input type="radio" name="view-option"> Zoom Out</label>
-          <!-- Add more filler options here -->
-        </div>
-      </div>
-      
-    <script src="/js/CombinedScript.js"></script>
+    <main class="mainGrid">
+        <aside class="viewArea"></aside>
+        <div class="comicGrid"> </div>
+        <aside class="toolBox">
+
+            <p class="titleSettingOne titleSetting">Control color</p>
+
+            <div class="darkModeSetting">
+
+                <input type="radio" id="lightMode" name="theme" value="light" checked>
+                <label for="lightMode">Light Mode</label>
+
+                <input type="radio" id="darkMode" name="theme" value="dark">
+                <label for="darkMode">Dark Mode</label>
+
+            </div>
+
+      <!--  <hr class="dividerOne divider"> -->    
+
+            <p class="titleSettingTwo titleSetting">Control Media</p>
+
+            <div class="controlMediaSetting">
+
+                <!--Displays the text inside each image-->
+                <div class="mediaSettingOne setting">
+                    <input type="checkbox" id="addTextCheckbox" checked>
+                    <label for="addTextCheckbox">Display Text</label>
+                </div>
+
+                 <!--Plays the animation of mp3 media-->
+                 <div class="mediaSettingThree setting">
+                    <input type="checkbox" id="addAnimationCheckbox" checked>
+                    <label for="addAnimationCheckbox">Play Animation</label>
+                </div>
+
+                <!--Plays the audio of each image-->
+                <div class="mediaSettingTwo setting">
+                    <input type="checkbox" id="addAudioCheckbox" checked>
+                    <label for="addAudioCheckbox">Play Audio</label>
+                </div>
+
+                <!--Plays the audio of each image-->
+                <div class="mediaSettingFour setting">
+                    <input type="checkbox" id="enableCinemaCheckBox">
+                    <label for="enableCinemaCheckBox">Enable Cinema</label>
+                </div>
+
+            </div>
+
+      <!--  <hr class="dividerTwo divider"> -->    
+
+
+        </aside>
+
+        <button id="toggleButton">⇄</button>
+
+
+
+    </main>
+
+    <footer class="footerGrid"></footer>
+
 </body>
+<script src="/js/comicSettings.js"></script>
+<script src="/js/CombinedScript.js"></script>
+
 </html>

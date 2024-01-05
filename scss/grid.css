@@ -1,0 +1,82 @@
+.bodyGrid {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr); /* 12-column grid */
+  gap: 15px;
+}
+.bodyGrid .headerGrid {
+  grid-column: 1/13;
+  grid-row: 1/2;
+  background-color: #191a1c;
+  color: white;
+  padding: 10px;
+}
+.bodyGrid .headerGrid .navGrid .listItemContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "listItemOne listItemTwo listItemThree listItemFour";
+  list-style: none;
+  justify-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+}
+.bodyGrid .headerGrid .navGrid .listItemContainer .listItemOne {
+  grid-area: listItemOne;
+}
+.bodyGrid .headerGrid .navGrid .listItemContainer .listItemTwo {
+  grid-area: listItemTwo;
+}
+.bodyGrid .headerGrid .navGrid .listItemContainer .listItemThree {
+  grid-area: listItemThree;
+}
+.bodyGrid .headerGrid .navGrid .listItemContainer .listItemFour {
+  grid-area: listItemFour;
+}
+.bodyGrid .headerGrid .navGrid .listItemContainer a {
+  text-decoration: none;
+  color: white;
+}
+.bodyGrid .mainGrid {
+  display: grid;
+  grid-column: 1/13;
+  grid-row: 2/10;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "viewArea comicGrid toolBox";
+}
+.bodyGrid .mainGrid .viewArea {
+  display: inherit;
+  grid-area: viewArea;
+}
+.bodyGrid .mainGrid .comicGrid {
+  display: grid;
+  gap: 40px;
+  grid-area: comicGrid;
+}
+.bodyGrid .comicPage {
+  display: grid;
+  position: relative;
+  grid-area: comicPage;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  border: 4px solid #191a1c;
+  gap: 5px;
+}
+.bodyGrid .comicPage img,
+.bodyGrid .comicPage video {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.bodyGrid .footerGrid {
+  display: grid;
+  grid-column: 1/13;
+  grid-row: 10/11;
+  width: 100%;
+  background-color: #191a1c;
+  padding: 10px;
+}/*# sourceMappingURL=grid.css.map */
