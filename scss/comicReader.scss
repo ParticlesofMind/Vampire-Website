@@ -6,7 +6,7 @@
 .toolBox {
     display: grid;
     grid-template-columns: auto; /* Define one column */
-    grid-template-rows:repeat(20, 50px);
+    grid-template-rows: repeat(20, 50px);
     position: fixed;
     right: 0;
     padding: 25px;
@@ -16,44 +16,65 @@
     background-color: #191a1c; /* Your color choice */
     transition: right 0.5s;
 
-    .titleSetting { 
+    .titleSetting {
         color: white;
         font-size: 26px;
     }
 
-    .setting { 
+    .setting {
         font-size: 20px;
     }
- 
-    .titleSettingOne { 
+
+    .titleSettingOne {
         grid-row: 1;
     }
 
-    .darkModeSetting { 
+    .darkModeSetting {
         grid-row: 2;
+        font-size: 20px;
+
     }
 
-    .titleSettingTwo { 
+    .dividerOne { 
         grid-row: 3;
-
+     
     }
 
-    .mediaSettingOne { 
+    .titleSettingTwo {
         grid-row: 4;
     }
 
-    .mediaSettingTwo { 
+    .mediaSettingOne {
         grid-row: 5;
     }
 
-    .mediaSettingThree { 
+    .mediaSettingTwo {
         grid-row: 6;
     }
 
-    .mediaSettingFour { 
+    .mediaSettingThree {
         grid-row: 7;
     }
 
+    .mediaSettingFour {
+        grid-row: 8;
+    }
+
+    .audioPlayOptions { 
+        padding: 20px;
+    }
+
+    .dividerTwo {  
+        grid-row: 9;
+    }
+
+    .titleSettingThree {
+        grid-row: 10;
+    }
+
+    .defineExperienceSetting { 
+        grid-row: 11;
+    }
 }
 
 .hidden {
@@ -71,6 +92,7 @@
     max-height: 15%;
     text-align: left; /* Center-align text */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 16px;
 }
 
 /* Other styles */
@@ -101,10 +123,16 @@ label {
 }
 
 
-/* 
   .divider { 
     border: 0;
     border-top: 2px solid white;
   }
-*/
 
+  .audioButton {
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white; /* Adjust as needed */
+    font-size: 24px; /* Adjust as needed */
+}

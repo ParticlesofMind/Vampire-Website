@@ -1,77 +1,73 @@
 {
-
-
     "page1": {
         "src": "/assets/marstonOnDeck_v02.mp4",
-        "gridArea": "1 / 1 / 16 / 11", 
-        "text": "Lorem ipsum dolor sit amet..."
-
+        "gridArea": "1 / 1 / 16 / 11",
+        "text": "Lorem ipsum dolor sit amet...",
+        "audio": "/assets/wavesAndSeagulls.mp3"
     },
-
     "page2": [
         {
             "src": "/assets/marketStreet.png",
             "gridArea": "1 / 1 / 7 / 7",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
         {
             "src": "/assets/marstonProfile.png",
             "gridArea": "1 / 7 / 7 / 11",
-            "text": "Lorem ipsum dolor sit amet..."
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
 
         },
-
         {
             "src": "/assets/worldWarOneMedal.png",
             "gridArea": "7 / 1 / 12 / 6",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
         {
             "src": "/assets/worldWarOneSoldiers.png",
             "gridArea": "7 / 6 / 12 / 11",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
-
         {
             "src": "/assets/greedyBusinessman_v01.mp4",
             "gridArea": "12 / 1 / 16 / 5",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
         {
             "src": "/assets/evilGeneral_v01.mp4",
             "gridArea": "12 / 5 / 16 / 8",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
         {
             "src": "/assets/slimyPolitician_v01.mp4",
             "gridArea": "12 / 8 / 16 / 11",
-            "text": "Lorem ipsum dolor sit amet..."
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         }
     ],
-
     "page3": [
         {
             "src": "/assets/pokerPlayers.png",
             "gridArea": "1 / 1 / 8 / 6",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
         {
             "src": "/assets/grinningFace.png",
             "gridArea": "1 / 6 / 8 / 11",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         },
         {
             "src": "/assets/marstonShipCabin.png",
             "gridArea": "8 / 1 / 16 / 11",
-            "text": "Lorem ipsum dolor sit amet..."
-
+            "text": "Lorem ipsum dolor sit amet...",
+            "audio": "/assets/busyMarketPlace.mp3"
         }
     ]
 }

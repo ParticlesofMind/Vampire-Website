@@ -56,4 +56,43 @@ document.getElementById('addAnimationCheckbox').addEventListener('change', funct
     });
 });
 
+// Play sound 
 
+document.getElementById('addAudioCheckbox').addEventListener('change', function() {
+    let audioButtons = document.querySelectorAll('.audioButton');
+    audioButtons.forEach(button => {
+        if (this.checked) {
+            button.style.display = 'block';
+        } else {
+            button.style.display = 'none';
+            if (button.audio && button.getAttribute('data-playing') === 'true') {
+                button.audio.pause();
+                button.setAttribute('data-playing', 'false');
+                updateAudioButtonSymbol(button);
+            }
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    generateAndPopulateLayout().then(() => {
+        // Set checkbox to checked by default
+        document.getElementById('addAudioCheckbox').checked = true; 
+        // Trigger change event to set initial state of audio buttons
+        document.getElementById('addAudioCheckbox').dispatchEvent(new Event('change'));
+
+        // Event listeners for audio play options
+        document.getElementById('repeatingAudio').addEventListener('change', function() {
+            if (currentlyPlayingAudioButton && currentlyPlayingAudioButton.audio) {
+                currentlyPlayingAudioButton.audio.loop = true;
+            }
+        });
+
+        document.getElementById('singleAudio').addEventListener('change', function() {
+            if (currentlyPlayingAudioButton && currentlyPlayingAudioButton.audio) {
+                currentlyPlayingAudioButton.audio.loop = false;
+            }
+        });
+    });
+});

@@ -33,14 +33,18 @@
             <div class="darkModeSetting">
 
                 <input type="radio" id="lightMode" name="theme" value="light" checked>
-                <label for="lightMode">Light Mode</label>
+                <label for="lightMode">Light</label>
 
                 <input type="radio" id="darkMode" name="theme" value="dark">
-                <label for="darkMode">Dark Mode</label>
+                <label for="darkMode">Dark</label>
+
+                <input type="radio" id="contrastMode" name="theme" value="contrast">
+                <label for="contrastMode">Contrast</label>
+
 
             </div>
+            <hr class="dividerOne divider">
 
-      <!--  <hr class="dividerOne divider"> -->    
 
             <p class="titleSettingTwo titleSetting">Control Media</p>
 
@@ -52,8 +56,8 @@
                     <label for="addTextCheckbox">Display Text</label>
                 </div>
 
-                 <!--Plays the animation of mp3 media-->
-                 <div class="mediaSettingThree setting">
+                <!--Plays the animation of mp3 media-->
+                <div class="mediaSettingThree setting">
                     <input type="checkbox" id="addAnimationCheckbox" checked>
                     <label for="addAnimationCheckbox">Play Animation</label>
                 </div>
@@ -61,20 +65,32 @@
                 <!--Plays the audio of each image-->
                 <div class="mediaSettingTwo setting">
                     <input type="checkbox" id="addAudioCheckbox" checked>
-                    <label for="addAudioCheckbox">Play Audio</label>
-                </div>
+                    <label for="addAudioCheckbox">Show Audio Button</label>
 
-                <!--Plays the audio of each image-->
-                <div class="mediaSettingFour setting">
-                    <input type="checkbox" id="enableCinemaCheckBox">
-                    <label for="enableCinemaCheckBox">Enable Cinema</label>
-                </div>
+                    <div class="audioPlayOptions">
 
+                        <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
+                        <label for="repeatingAudio">Repeating</label>
+
+                        <input type="radio" id="singleAudio" name="audio" value="single">
+                        <label for="singleAudio">Single</label>
+                    </div>
+                </div>
             </div>
 
-      <!--  <hr class="dividerTwo divider"> -->    
+            <hr class="dividerTwo divider">
 
+            <p class="titleSettingThree titleSetting">Define Experience</p>
 
+            <div class="defineExperienceSetting setting">
+
+                <input type="radio" id="comicExperience" name="experience" value="comic" checked>
+                <label for="comicExperience">Comic</label>
+
+                <!--Sets the experience to cinema-->
+                <input type="radio" id="cinemaExperience" name="experience" value="cinema">
+                <label for="cinemaExperience">Cinema</label>
+            </div>
         </aside>
 
         <button id="toggleButton">⇄</button>
