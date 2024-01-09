@@ -24,85 +24,126 @@
     </header>
 
     <main class="mainGrid">
-        <aside class="viewArea"></aside>
+        <aside class="viewArea">
+
+        </aside>
         <div class="comicGrid"> </div>
         <aside class="toolBox">
 
-            <p class="titleSettingOne titleSetting">Control color</p>
+
+            <div class="titleSettingOne">
+                <p class="titleSetting">Control color</p>
+            </div>
 
             <div class="darkModeSetting">
 
-                <input type="radio" id="lightMode" name="theme" value="light" checked>
-                <label for="lightMode">Light</label>
+                <div class="colorOptions">
 
-                <input type="radio" id="darkMode" name="theme" value="dark">
-                <label for="darkMode">Dark</label>
+                    <input type="radio" id="lightMode" name="theme" value="light" checked>
+                    <label for="lightMode">Light</label>
 
-                <input type="radio" id="contrastMode" name="theme" value="contrast">
-                <label for="contrastMode">Contrast</label>
 
+                    <input type="radio" id="darkMode" name="theme" value="dark">
+                    <label for="darkMode">Dark</label>
+                </div>
 
             </div>
-            <hr class="dividerOne divider">
+
+            <!-- 
+
+       <div class="dividerOne">
+                <hr class="divider">
+            </div>
+
+            -->
 
 
-            <p class="titleSettingTwo titleSetting">Control Media</p>
 
-            <div class="controlMediaSetting">
+            <div class="titleSettingTwo">
+                <p class="titleSetting">Control Media</p>
+            </div>
 
-                <!--Displays the text inside each image-->
-                <div class="mediaSettingOne setting">
-                    <input type="checkbox" id="addTextCheckbox" checked>
-                    <label for="addTextCheckbox">Display Text</label>
-                </div>
+            <!--Displays the text inside each image-->
+            <div class="mediaSettingOne setting">
+                <input type="checkbox" id="addTextCheckbox" checked>
+                <label for="addTextCheckbox">Display Text</label>
 
-                <!--Plays the animation of mp3 media-->
-                <div class="mediaSettingThree setting">
-                    <input type="checkbox" id="addAnimationCheckbox" checked>
-                    <label for="addAnimationCheckbox">Play Animation</label>
-                </div>
+                <div class="narrationOptions">
 
-                <!--Plays the audio of each image-->
-                <div class="mediaSettingTwo setting">
-                    <input type="checkbox" id="addAudioCheckbox" checked>
-                    <label for="addAudioCheckbox">Show Audio Button</label>
+                    <!--3rd person omniscient storyteller-->
+                    <input type="checkbox" id="addObjectiveNarrationCheckbox" checked>
+                    <label for="addObjectiveNarrationCheckbox">Objective narration</label>
 
-                    <div class="audioPlayOptions">
+                    <br>
 
-                        <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
-                        <label for="repeatingAudio">Repeating</label>
-
-                        <input type="radio" id="singleAudio" name="audio" value="single">
-                        <label for="singleAudio">Single</label>
-                    </div>
+                    <!--1st person omniscient storyteller-->
+                    <input type="checkbox" id="addSubjectiveNarrationCheckbox" checked>
+                    <label for="addSubjectiveNarrationCheckbox">Subjective narration</label>
                 </div>
             </div>
 
-            <hr class="dividerTwo divider">
+            <!--Plays the audio of each image-->
+            <div class="mediaSettingTwo setting">
+                <input type="checkbox" id="addAudioCheckbox" checked>
+                <label for="addAudioCheckbox">Show Audio Button</label>
 
-            <p class="titleSettingThree titleSetting">Define Experience</p>
+                <div class="audioPlayOptions">
+                    <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
+                    <label for="repeatingAudio">Repeat</label>
+
+                    <input type="radio" id="singleAudio" name="audio" value="single">
+                    <label for="singleAudio">Single</label>
+                </div>
+            </div>
+
+            <!--Plays the animation of mp3 media-->
+            <div class="mediaSettingThree setting">
+
+                <input type="checkbox" id="addAnimationCheckbox" checked>
+                <label for="addAnimationCheckbox">Play Animation</label>
+
+                <div class="playbackSpeedOptions">
+                    <input type="range" id="playbackSpeedSlider" min="0.75" max="1.25" step="0.25" value="1.0">
+                </div>
+
+            </div>
+
+
+            <div class="titleSettingThree">
+                <p class="titleSetting">Define Experience</p>
+            </div>
 
             <div class="defineExperienceSetting setting">
 
-                <input type="radio" id="comicExperience" name="experience" value="comic" checked>
-                <label for="comicExperience">Comic</label>
+                <div class="experienceOptions">
 
-                <!--Sets the experience to cinema-->
-                <input type="radio" id="cinemaExperience" name="experience" value="cinema">
-                <label for="cinemaExperience">Cinema</label>
+                    <input type="radio" id="scrollExperience" name="experience" value="scroll" checked>
+                    <label for="scrollExperience">Scroll</label>
+
+                    <input type="radio" id="slideExperience" name="experience" value="slide">
+                    <label for="slideExperience">Slide</label>
+
+                </div>
+                    <div class="navigationButtons">
+
+                        <!-- Up and Down Navigation Buttons for scroll -->
+                        <a id="upPageButton" class="scrollButtons">↑</a>
+                        <a id="downPageButton" class="scrollButtons">↓</a>
+
+                        <!-- Left and Right Navigation Buttons for slide -->
+                        <a id="prevPageButton" class="slideButtons">←</a>
+                        <a id="nextPageButton" class="slideButtons">→</a>
+
+                    </div>
             </div>
         </aside>
-
         <button id="toggleButton">⇄</button>
-
-
-
     </main>
 
     <footer class="footerGrid"></footer>
 
 </body>
 <script src="/js/comicSettings.js"></script>
-<script src="/js/CombinedScript.js"></script>
+<script src="/js/layout.js"></script>
 
 </html>

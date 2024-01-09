@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 202">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="onePage">
+    <g id="twoPage">
+      <g>
+        <g>
+          <rect class="cls-3" x=".5" y=".5" width="145" height="201"/>
+          <path class="cls-2" d="M145,1v200H1V1h144M146,0H0v202h146V0h0Z"/>
+        </g>
+        <line class="cls-1" x1="25" y1="31.5" x2="123" y2="31.5"/>
+        <line class="cls-1" x1="25" y1="58.5" x2="123" y2="58.5"/>
+        <line class="cls-1" x1="25" y1="85.5" x2="123" y2="85.5"/>
+      </g>
+      <g>
+        <g>
+          <rect class="cls-3" x="154.5" y=".5" width="145" height="201"/>
+          <path class="cls-2" d="M299,1v200h-144V1h144M300,0h-146v202h146V0h0Z"/>
+        </g>
+        <line class="cls-1" x1="179" y1="31.5" x2="277" y2="31.5"/>
+        <line class="cls-1" x1="179" y1="58.5" x2="277" y2="58.5"/>
+        <line class="cls-1" x1="179" y1="85.5" x2="277" y2="85.5"/>
+      </g>
+    </g>
+  </g>
+</svg>
