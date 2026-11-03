@@ -3,17 +3,62 @@
   color: white;
 }
 
+.viewArea .navigationButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  height: 30em;
+}
+.viewArea .navigationButtons .fixedNavigationPosition {
+  grid-row: 6;
+  grid-column: 2;
+  height: 100%;
+}
+.viewArea .navigationButtons .fixedNavigationPosition .scrollButtons,
+.viewArea .navigationButtons .fixedNavigationPosition .slideButtons {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  cursor: pointer;
+  margin: auto;
+}
+.viewArea .navigationButtons .fixedNavigationPosition #upPageButton {
+  border-width: 0 25px 40px 25px;
+  border-color: transparent transparent #000 transparent;
+  cursor: pointer;
+}
+.viewArea .navigationButtons .fixedNavigationPosition #downPageButton {
+  margin-top: 5%;
+  border-width: 40px 25px 0 25px;
+  border-color: #000 transparent transparent transparent;
+  cursor: pointer;
+}
+.viewArea .navigationButtons .fixedNavigationPosition #prevPageButton {
+  margin-right: 15%;
+  border-width: 20px 40px 20px 0;
+  border-color: transparent #000 transparent transparent;
+  cursor: pointer;
+}
+.viewArea .navigationButtons .fixedNavigationPosition #nextPageButton {
+  margin-left: 5%;
+  border-width: 20px 0 20px 40px;
+  border-color: transparent transparent transparent #000;
+  cursor: pointer;
+}
+
 .toolBox {
   display: grid;
-  grid-template-columns: auto; /* Define one column */
-  grid-template-rows: 50px 50px 50px 125px 100px 0.25fr 50px 150px; /* Adjust rows to auto for content size and 1fr for remaining space */
+  grid-template-columns: auto;
+  grid-template-rows: 50px repeat(3, 1fr) 50px repeat(2, 1fr) 50px repeat(2, 1fr);
   position: fixed;
   right: 0;
+  gap: 10px;
   padding: 25px;
   top: 0;
-  width: 300px; /* Adjust as needed */
+  width: 300px;
   height: 100%;
-  background-color: #191a1c; /* Your color choice */
+  background-color: #191a1c;
   transition: right 0.5s;
 }
 .toolBox .titleSetting {
@@ -24,61 +69,100 @@
 .toolBox .titleSettingOne {
   grid-row: 1;
 }
-.toolBox .darkModeSetting {
-  grid-row: 2;
-}
-.toolBox .darkModeSetting .colorOptions {
-  padding: 10px;
-}
-.toolBox .titleSettingTwo {
-  grid-row: 3;
-}
 .toolBox .mediaSettingOne {
-  grid-row: 4;
+  grid-row: 2/3;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+.toolBox .mediaSettingOne .displayText {
+  grid-row: 1/2;
+}
+.toolBox .mediaSettingOne .displayText .narrationOptions {
   padding: 10px;
 }
-.toolBox .mediaSettingOne .narrationOptions {
-  padding: 10px;
+.toolBox .mediaSettingOne .fontTypeOptions {
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.toolBox .mediaSettingOne .fontTypeOptions #fontSize {
+  grid-row: 1/3;
+  grid-column: 1/2;
+}
+.toolBox .mediaSettingOne .fontTypeOptions #fontSelection {
+  grid-row: 1/3;
+  grid-column: 2/3;
 }
 .toolBox .mediaSettingTwo {
-  grid-row: 5;
+  grid-row: 3/4;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+.toolBox .mediaSettingTwo .playAudio {
+  grid-row: 1/2;
+}
+.toolBox .mediaSettingTwo .playAudio .audioPlayOptions {
   padding: 10px;
 }
-.toolBox .mediaSettingTwo .audioPlayOptions {
+.toolBox .mediaSettingTwo .volumeOptions {
+  grid-row: 2/3;
+  color: white;
+  width: 100%;
+  margin: 10px 0;
   padding: 10px;
+}
+.toolBox .mediaSettingTwo .volumeOptions #volumeSlider {
+  color: white;
+  background: white;
+  width: 100%;
+}
+.toolBox .mediaSettingTwo .volumeOptions .volumeLabels {
+  display: flex;
+  text-align: center;
+  color: white;
+  font-size: 16px;
 }
 .toolBox .mediaSettingThree {
-  grid-row: 6;
+  grid-row: 4/5;
   padding: 10px;
 }
 .toolBox .mediaSettingThree .playbackSpeedOptions {
   padding: 10px;
 }
+.toolBox .titleSettingTwo {
+  grid-row: 5;
+}
+.toolBox .darkModeSetting {
+  grid-row: 6/7;
+  padding: 10px;
+}
+.toolBox .comicColorOptions {
+  grid-row: 7/8;
+  padding: 10px;
+}
 .toolBox .titleSettingThree {
-  grid-row: 7;
-}
-.toolBox .defineExperienceSetting {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   grid-row: 8;
+}
+.toolBox .experienceOptions {
+  grid-row: 9/10;
   padding: 10px;
 }
-.toolBox .defineExperienceSetting .experienceOptions {
-  padding: 10px;
-  grid-column: 1/3;
-}
-.toolBox .defineExperienceSetting .navigationButtons {
-  padding: 10px;
-  grid-column: 1/3;
+.toolBox .experienceOptions .navigationButtons {
+  padding: 20px;
   display: flex;
-  gap: 10px; /* Spacing between buttons */
+  gap: 10px;
 }
-.toolBox .defineExperienceSetting .navigationButtons .slideButtons, .toolBox .defineExperienceSetting .navigationButtons .scrollButtons {
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 24px; /* Adjust size as needed */
+.toolBox .layoutOptions {
+  grid-row: 10/11;
+  padding: 10px;
+}
+
+.slideButtons:after,
+.scrollButtons:after {
+  content: "";
+  display: block;
 }
 
 .hidden {
@@ -86,47 +170,46 @@
 }
 
 .subjectiveTextOverlay {
-  position: absolute; /* Ensures overlay without affecting parent size */
-  bottom: 0; /* Position at the bottom */
-  right: 0; /* Position at the right */
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  border-left: 3px solid black; /* Black border */
-  border-top: 3px solid black; /* Black border */
-  padding: 5px; /* Padding around the text */
-  max-width: 50%; /* Set max-width to a relative size */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+  padding: 5px;
+  max-width: 50%;
   max-height: 15%;
-  text-align: left; /* Center-align text */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  text-align: left;
+  box-sizing: border-box;
   font-size: 16px;
 }
 
 .objectiveTextOverlay {
-  position: absolute; /* Ensures overlay without affecting parent size */
+  position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  border-bottom: 3px solid black; /* Black border */
-  border-right: 3px solid black; /* Black border */
-  padding: 5px; /* Padding around the text */
-  max-width: 50%; /* Set max-width to a relative size */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+  padding: 5px;
+  max-width: 50%;
   max-height: 15%;
-  text-align: left; /* Center-align text */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  text-align: left;
+  box-sizing: border-box;
   font-size: 16px;
 }
 
-/* Other styles */
 #toggleButton {
   position: fixed;
-  right: 300px; /* Adjusted to be next to the toolbox when it's open */
-  top: 50vh; /* Adjust as needed */
-  width: 20px; /* Small and non-intrusive size */
+  right: 300px;
+  top: 50vh;
+  width: 20px;
   height: 100px;
   cursor: pointer;
-  z-index: 1000; /* Ensure it's above other elements */
-  border: none; /* Remove default border */
-  transition: right 0.5s; /* Smooth transition */
-  background-color: #191a1c; /* Your color choice */
+  z-index: 1000;
+  border: none;
+  transition: right 0.5s;
+  background-color: #191a1c;
   color: white;
   border-radius: 35% 0% 0% 35%;
 }
@@ -140,7 +223,6 @@ input {
 label {
   color: white;
   font-size: 20px;
-  padding: 10px;
 }
 
 .divider {
@@ -153,11 +235,53 @@ label {
   background: none;
   border: none;
   cursor: pointer;
-  color: white; /* Adjust as needed */
-  font-size: 24px; /* Adjust as needed */
+  color: white;
+  font-size: 24px;
 }
 
 #playbackSpeedSlider {
   width: 100%;
   margin: 10px 0;
-}/*# sourceMappingURL=comicReader.css.map */
+}
+
+.playbackSpeedLabels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: white;
+  font-size: 16px;
+}
+
+.playbackSpeedSlow {
+  grid-column: 1;
+  text-align: left;
+}
+
+.playbackSpeedNormal {
+  text-align: center;
+  grid-column: 2;
+}
+
+.playbackSpeedFast {
+  grid-column: 3;
+  text-align: right;
+}
+
+label {
+  font-size: 1rem;
+}
+
+select {
+  font-size: 0.9rem;
+}
+
+.regularFilter {
+  filter: none;
+}
+
+.blackAndWhiteFilter {
+  filter: grayscale(100%);
+}
+
+.colorBlindFilter {
+  filter: contrast(150%);
+}

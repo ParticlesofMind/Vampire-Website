@@ -1,12 +1,19 @@
 
-// Variables 
+// Variables
 let currentlyPlayingAudioButton = null;
 
-async function generateLayout() {
+// Several scripts call generateLayout(); build the comic only once and share the result
+let layoutPromise = null;
+function generateLayout() {
+    if (!layoutPromise) layoutPromise = buildLayout();
+    return layoutPromise;
+}
+
+async function buildLayout() {
     const container = document.querySelector('.comicGrid');
 
     try {
-        const response = await fetch('/json/imagePaths.json');
+        const response = await fetch('../json/imagePaths.json');
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }

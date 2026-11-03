@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/scss/comicReader.css">
-    <link rel="stylesheet" href="/scss/grid.css">
-    <link rel="stylesheet" href="/scss/universal.css">
-
+    <title>Vampires in New York</title>
+    <link rel="stylesheet" href="../scss/comicReader.css">
+    <link rel="stylesheet" href="../scss/grid.css">
+    <link rel="stylesheet" href="../scss/universal.css">
+    <link rel="stylesheet" href="../scss/fonts.css">
 </head>
 
 <body class="bodyGrid">
@@ -26,116 +26,176 @@
     <main class="mainGrid">
         <aside class="viewArea">
 
+            <!-- Navigate vertically/horizontally with buttons -->
+            <div class="navigationButtons">
+
+                <div class="fixedNavigationPosition">
+
+                    <a id="upPageButton" class="scrollButtons"></a>
+                    <a id="downPageButton" class="scrollButtons"></a>
+
+                    <a id="prevPageButton" class="slideButtons"></a>
+                    <a id="nextPageButton" class="slideButtons"></a>
+
+                </div>
+
+
+            </div>
+
+
         </aside>
         <div class="comicGrid"> </div>
         <aside class="toolBox">
 
 
             <div class="titleSettingOne">
-                <p class="titleSetting">Control color</p>
+                <p class="titleSetting">Media</p>
             </div>
 
-            <div class="darkModeSetting">
 
-                <div class="colorOptions">
+            <div class="mediaSettingOne setting">
 
-                    <input type="radio" id="lightMode" name="theme" value="light" checked>
-                    <label for="lightMode">Light</label>
+                <div class="displayText">
+
+                    <!--Displays the text inside each image-->
+                    <input type="checkbox" id="addTextCheckbox" checked>
+                    <label for="addTextCheckbox">Display Text</label>
+
+                    <div class="narrationOptions">
+
+                        <!--3rd person omniscient storyteller-->
+                        <input type="checkbox" id="addObjectiveNarrationCheckbox" checked>
+                        <label for="addObjectiveNarrationCheckbox">Objective narration</label>
+
+                        <br>
+
+                        <!--1st person omniscient storyteller-->
+                        <input type="checkbox" id="addSubjectiveNarrationCheckbox" checked>
+                        <label for="addSubjectiveNarrationCheckbox">Subjective narration</label>
+                    </div>
 
 
-                    <input type="radio" id="darkMode" name="theme" value="dark">
-                    <label for="darkMode">Dark</label>
                 </div>
 
-            </div>
+                <div class="fontTypeOptions">
 
-            <!-- 
+                    <!--Set the font size of comic text-->
+                    <label for="fontSize"></label>
+                    <select name="size" id="fontSize">
+                        <option value="">Size</option>
+                        <option value="small">Small</option>
+                        <option value="normal">Normal</option>
+                        <option value="large">Large</option>
+                    </select>
 
-       <div class="dividerOne">
-                <hr class="divider">
-            </div>
-
-            -->
-
-
-
-            <div class="titleSettingTwo">
-                <p class="titleSetting">Control Media</p>
-            </div>
-
-            <!--Displays the text inside each image-->
-            <div class="mediaSettingOne setting">
-                <input type="checkbox" id="addTextCheckbox" checked>
-                <label for="addTextCheckbox">Display Text</label>
-
-                <div class="narrationOptions">
-
-                    <!--3rd person omniscient storyteller-->
-                    <input type="checkbox" id="addObjectiveNarrationCheckbox" checked>
-                    <label for="addObjectiveNarrationCheckbox">Objective narration</label>
-
-                    <br>
-
-                    <!--1st person omniscient storyteller-->
-                    <input type="checkbox" id="addSubjectiveNarrationCheckbox" checked>
-                    <label for="addSubjectiveNarrationCheckbox">Subjective narration</label>
+                    <!--Set the font type of comic text-->
+                    <label for="fontSelection"></label>
+                    <select name="fonts" id="fontSelection">
+                        <option value="">Font</option>
+                        <option value="roboto">Roboto</option>
+                        <option value="lato">Lato</option>
+                        <option value="openSans">Open Sans</option>
+                    </select>
                 </div>
             </div>
 
             <!--Plays the audio of each image-->
             <div class="mediaSettingTwo setting">
-                <input type="checkbox" id="addAudioCheckbox" checked>
-                <label for="addAudioCheckbox">Show Audio Button</label>
+                <div class="playAudio">
+                    <input type="checkbox" id="addAudioCheckbox" checked>
+                    <label for="addAudioCheckbox">Show Audio Button</label>
 
-                <div class="audioPlayOptions">
-                    <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
-                    <label for="repeatingAudio">Repeat</label>
+                    <div class="audioPlayOptions">
+                        <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
+                        <label for="repeatingAudio">Repeat</label>
 
-                    <input type="radio" id="singleAudio" name="audio" value="single">
-                    <label for="singleAudio">Single</label>
+                        <input type="radio" id="singleAudio" name="audio" value="single">
+                        <label for="singleAudio">Single</label>
+                    </div>
+                </div>
+
+                <!--Controls the volume of outgoing sound-->
+                <div class="volumeOptions">
+                    <input type="range" id="volumeSlider" min="0" max="100" step="20" value="0">
+                    <div class="volumeLabels">
+                        <p class="volumeLabel">0</p>
+                        <p class="volumeLabel">20</p>
+                        <p class="volumeLabel">40</p>
+                        <p class="volumeLabel">60</p>
+                        <p class="volumeLabel">80</p>
+                        <p class="volumeLabel">100</p>
+                    </div>
                 </div>
             </div>
 
             <!--Plays the animation of mp3 media-->
             <div class="mediaSettingThree setting">
-
                 <input type="checkbox" id="addAnimationCheckbox" checked>
                 <label for="addAnimationCheckbox">Play Animation</label>
 
                 <div class="playbackSpeedOptions">
                     <input type="range" id="playbackSpeedSlider" min="0.75" max="1.25" step="0.25" value="1.0">
+                    <div class="playbackSpeedLabels">
+                        <p class="playbackSpeedSlow">0.75</p>
+                        <p class="playbackSpeedNormal">1.0</p>
+                        <p class="playbackSpeedFast">1.25</p>
+                    </div>
                 </div>
 
+            </div>
+
+            <div class="titleSettingTwo">
+                <p class="titleSetting">Colors</p>
+            </div>
+
+            <!--Set background color to white or black-->
+            <div class="darkModeSetting">
+
+                <input type="radio" id="lightMode" name="theme" value="light" checked>
+                <label for="lightMode">Light background</label>
+
+                <br>
+
+                <input type="radio" id="darkMode" name="theme" value="dark">
+                <label for="darkMode">Dark background</label>
+            </div>
+
+            <div class="comicColorOptions">
+                <input type="radio" id="regularMode" name="colorMode" value="regular" checked>
+                <label for="regularMode">Regular mode</label>
+
+                <br>
+
+                <input type="radio" id="blackAndWhiteMode" name="colorMode" value="blackAndWhite">
+                <label for="blackAndWhiteMode">Black and white mode</label>
+
+                <br>
+
+                <input type="radio" id="colorBlindMode" name="colorMode" value="colorBlind">
+                <label for="colorBlindMode">Color blind mode </label>
             </div>
 
 
             <div class="titleSettingThree">
-                <p class="titleSetting">Define Experience</p>
+                <p class="titleSetting">Layout</p>
             </div>
 
-            <div class="defineExperienceSetting setting">
+            <!-- Set comic to scroll (vertical) or slide (horizontal)-->
+            <div class="experienceOptions">
+                <input type="radio" id="scrollExperience" name="experience" value="scroll" checked>
+                <label for="scrollExperience">Scroll</label>
 
-                <div class="experienceOptions">
+                <input type="radio" id="slideExperience" name="experience" value="slide">
+                <label for="slideExperience">Slide</label>
 
-                    <input type="radio" id="scrollExperience" name="experience" value="scroll" checked>
-                    <label for="scrollExperience">Scroll</label>
+                <br>
 
-                    <input type="radio" id="slideExperience" name="experience" value="slide">
-                    <label for="slideExperience">Slide</label>
+                <input type="checkbox" id="showNavigationButtons" name="showButons" value="showButons">
+                <label for="showNavigationButtons">Show navigation buttons</label>
 
-                </div>
-                    <div class="navigationButtons">
-
-                        <!-- Up and Down Navigation Buttons for scroll -->
-                        <a id="upPageButton" class="scrollButtons">↑</a>
-                        <a id="downPageButton" class="scrollButtons">↓</a>
-
-                        <!-- Left and Right Navigation Buttons for slide -->
-                        <a id="prevPageButton" class="slideButtons">←</a>
-                        <a id="nextPageButton" class="slideButtons">→</a>
-
-                    </div>
             </div>
+
+
         </aside>
         <button id="toggleButton">⇄</button>
     </main>
@@ -143,7 +203,7 @@
     <footer class="footerGrid"></footer>
 
 </body>
-<script src="/js/comicSettings.js"></script>
-<script src="/js/layout.js"></script>
+<script src="../js/comicSettings.js"></script>
+<script src="../js/layout.js"></script>
 
 </html>

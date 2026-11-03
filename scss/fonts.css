@@ -1,0 +1,11 @@
+.robotoFont {
+  src: "../assets/fonts/robotoFont/Roboto-Regular.ttf" format("truetype");
+}
+
+.latoFont {
+  src: url("../assets/fonts/latoFont/Lato-Regular.ttf") format("truetype");
+}
+
+.openSansFont {
+  src: url("../assets/fonts/openSansFont/OpenSans-Regular.ttf") format("truetype");
+}

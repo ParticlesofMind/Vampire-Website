@@ -1,9 +1,9 @@
 
 ////////////////////
-// Comic settings // 
+// Comic settings //
 ////////////////////
 
-// variables 
+// variables
 
 let currentPage = 0;
 
@@ -83,7 +83,7 @@ document.querySelectorAll('input[name="theme"]').forEach(function(elem) {
     });
 });
 
-// Play animation 
+// Play animation
 document.getElementById('addAnimationCheckbox').addEventListener('change', function() {
     let videos = document.querySelectorAll('.comicGrid video');
     videos.forEach(video => {
@@ -100,7 +100,7 @@ document.getElementById('addAnimationCheckbox').addEventListener('change', funct
 });
 
 
-// Play sound 
+// Play sound
 
 function createAudioButton(audioSrc, imageGridArea) {
     let button = document.createElement('button');
@@ -182,7 +182,7 @@ document.getElementById('addAudioCheckbox').addEventListener('change', function(
 document.addEventListener("DOMContentLoaded", function() {
     generateLayout().then(() => {
         // Set checkbox to checked by default
-        document.getElementById('addAudioCheckbox').checked = true; 
+        document.getElementById('addAudioCheckbox').checked = true;
         // Trigger change event to set initial state of audio buttons
         document.getElementById('addAudioCheckbox').dispatchEvent(new Event('change'));
 
@@ -209,8 +209,7 @@ document.getElementById('playbackSpeedSlider').addEventListener('input', functio
 });
 
 
-// define experience 
-
+// define experience
 document.getElementById('scrollExperience').addEventListener('change', function() {
     if (this.checked) {
         document.querySelector('.comicGrid').classList.remove('slideExperience');
@@ -235,6 +234,7 @@ document.getElementById('upPageButton').addEventListener('click', function() {
         window.scrollTo({ top: offset, behavior: 'smooth' });
     }
 });
+
 
 document.getElementById('downPageButton').addEventListener('click', function() {
     // Logic to scroll down
@@ -269,7 +269,6 @@ document.getElementById('nextPageButton').addEventListener('click', function() {
     navigatePage('next');
 });
 
-
 // Function to set initial button visibility based on experience
 function setInitialButtonVisibility() {
     if (document.getElementById('scrollExperience').checked) {
@@ -284,6 +283,123 @@ function setInitialButtonVisibility() {
 // Call the function to set the initial state of buttons
 document.addEventListener("DOMContentLoaded", function() {
     generateLayout().then(() => {
-        setInitialButtonVisibility(); 
+        setInitialButtonVisibility();
     });
+});
+
+function applyTextStyleAndSize(fontSize, fontSelection) {
+    // Define font size mapping
+    const fontSizeMapping = {
+        'small': '16px',
+        'normal': '22px',
+        'large': '28px'
+    };
+
+    // Define font family mapping
+    const fontFamilyMapping = {
+        'roboto': 'Roboto, sans-serif',
+        'lato': 'Lato, sans-serif',
+        'openSans': 'Open Sans, sans-serif'
+    };
+
+    // Select all text elements and apply new styles
+    const subjectiveTextElements = document.querySelectorAll('.subjectiveTextOverlay');
+    const objectiveTextElements = document.querySelectorAll('.objectiveTextOverlay');
+
+    subjectiveTextElements.forEach(element => {
+        element.style.fontSize = fontSizeMapping[fontSize];
+        element.style.fontFamily = fontFamilyMapping[fontSelection];
+    });
+
+    objectiveTextElements.forEach(element => {
+        element.style.fontSize = fontSizeMapping[fontSize];
+        element.style.fontFamily = fontFamilyMapping[fontSelection];
+    });
+}
+
+// Event listeners for font size and font selection dropdowns
+document.getElementById('fontSize').addEventListener('change', function() {
+    applyTextStyleAndSize(this.value, document.getElementById('fontSelection').value);
+});
+
+document.getElementById('fontSelection').addEventListener('change', function() {
+    applyTextStyleAndSize(document.getElementById('fontSize').value, this.value);
+});
+
+
+// Adjust volume control function
+function adjustVolumeControl(volumeValue) {
+    // Convert the volume value from a range of 0-100 to 0-1
+    const volume = volumeValue / 100;
+
+    // Query all audio buttons
+    const audioButtons = document.querySelectorAll('.audioButton');
+
+    // Adjust the volume of each audio button's associated audio
+    audioButtons.forEach(button => {
+        if (button.audio) {
+            button.audio.volume = volume;
+        }
+    });
+}
+
+// Event listener for the volume slider
+document.getElementById('volumeSlider').addEventListener('input', function() {
+    adjustVolumeControl(this.value);
+});
+
+
+function adjustComicColor(mode) {
+    // Select all images in the comic grid
+    const images = document.querySelectorAll('.comicGrid img, .comicGrid video');
+
+    // Clear existing classes
+    images.forEach(image => {
+        image.classList.remove('regularFilter', 'blackAndWhiteFilter', 'colorBlindFilter');
+    });
+
+    // Apply the selected mode
+    switch (mode) {
+        case 'regular':
+            images.forEach(image => image.classList.add('regularFilter'));
+            break;
+        case 'blackAndWhite':
+            images.forEach(image => image.classList.add('blackAndWhiteFilter'));
+            break;
+        case 'colorBlind':
+            images.forEach(image => image.classList.add('colorBlindFilter'));
+            break;
+    }
+}
+
+// Event listeners for color mode options
+document.getElementById('regularMode').addEventListener('change', function() {
+    if (this.checked) adjustComicColor('regular');
+});
+document.getElementById('blackAndWhiteMode').addEventListener('change', function() {
+    if (this.checked) adjustComicColor('blackAndWhite');
+});
+document.getElementById('colorBlindMode').addEventListener('change', function() {
+    if (this.checked) adjustComicColor('colorBlind');
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const viewArea = document.querySelector('.viewArea');
+    const navButtons = document.querySelector('.navigationButtons');
+
+    function updateButtonPosition() {
+        const rect = viewArea.getBoundingClientRect();
+
+        // Adjust these values as needed
+        navButtons.style.top = rect.top + 'px';
+        navButtons.style.left = rect.left + 'px';
+    }
+
+    // Initial position update
+    updateButtonPosition();
+
+    // Update position on resize and scroll
+    window.addEventListener('resize', updateButtonPosition);
+    window.addEventListener('scroll', updateButtonPosition);
 });
