@@ -1,0 +1,204 @@
+// Vampires in New York: Manhattan, 1918, after dark.
+// Layout: a masthead bar across the top; the reader is arrows | comic | settings drawer.
+// Type: blackletter for names and section titles (the way New York papers set their mastheads),
+// IM Fell for printed captions and interface text, Special Elite for Marston's own voice.
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=Special+Elite&family=Roboto&family=Lato&family=Open+Sans&display=swap');
+
+:root {
+  // Color
+  --night: #150809;        // dried-blood black: page ground
+  --crypt: #241113;        // raised surfaces: header, drawer, footer
+  --oxblood: #5a1219;      // borders and quiet fills
+  --blood: #a8131f;        // the one action color
+  --blood-lit: #d33440;    // hover and focus on night
+  --bone: #ebe0c9;         // text on night
+  --bone-dim: #b5a589;     // secondary text on night
+  --paper: #e4d6b8;        // light reading background
+  --ink: #1b0f0c;          // text on paper
+
+  // Type
+  --font-masthead: 'UnifrakturMaguntia', 'Old English Text MT', 'Times New Roman', serif;
+  --font-print: 'IM Fell English', Georgia, 'Times New Roman', serif;
+  --font-typewriter: 'Special Elite', 'Courier New', Courier, monospace;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.333rem;
+  --step-2: 1.777rem;
+  --step-3: 2.369rem;
+  --step-5: clamp(3rem, 9vw, 7rem);
+
+  // Layout
+  --header-h: 4rem;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --drawer-w: 300px;
+
+  color-scheme: dark;
+}
+
+html {
+  background: var(--night);
+}
+
+body {
+  min-height: 100%;
+  background: var(--night);
+  color: var(--bone);
+  font-family: var(--font-print);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Light reading mode (chosen in the reader's settings)
+body.light-mode {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blood-lit);
+  outline-offset: 3px;
+}
+
+// Masthead
+.headerGrid {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+  padding-left: var(--gutter);
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--crypt);
+  border-bottom: 1px solid var(--oxblood);
+}
+
+.brand {
+  font-family: var(--font-masthead);
+  font-size: var(--step-2);
+  line-height: 1;
+  color: var(--bone);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.listItemContainer {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  list-style: none;
+
+  a {
+    font-size: var(--step-0);
+    color: var(--bone-dim);
+    text-decoration: none;
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+
+    &:hover {
+      color: var(--bone);
+    }
+
+    &[aria-current='page'] {
+      color: var(--bone);
+      border-bottom-color: var(--blood);
+    }
+  }
+}
+
+// Footer
+.footerGrid {
+  padding-block: 1.5rem;
+  padding-left: var(--gutter);
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--crypt);
+  border-top: 1px solid var(--oxblood);
+  color: var(--bone-dim);
+  font-size: var(--step--1);
+  font-style: italic;
+}
+
+// Buttons
+.button {
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  background: var(--blood);
+  color: var(--bone);
+  font-family: var(--font-print);
+  font-size: var(--step-1);
+  text-decoration: none;
+  border: 1px solid var(--blood-lit);
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--blood-lit);
+  }
+}
+
+// Plain content pages (shop, login)
+.plainPage {
+  max-width: 38rem;
+  padding-block: clamp(3rem, 10vh, 6rem);
+  padding-left: var(--gutter);
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  margin-inline: auto;
+
+  h1 {
+    font-family: var(--font-masthead);
+    font-weight: 400;
+    font-size: var(--step-3);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--bone-dim);
+    font-size: var(--step-1);
+  }
+}
+
+@media (max-width: 560px) {
+  .headerGrid {
+    gap: 0.75rem;
+  }
+
+  .brand {
+    font-size: var(--step-1);
+  }
+
+  .listItemContainer {
+    gap: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand {
+    font-size: 1.05rem;
+  }
+
+  .listItemContainer {
+    gap: 0.7rem;
+
+    a {
+      font-size: var(--step--1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

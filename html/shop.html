@@ -3,32 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../scss/comicReader.css">
-    <link rel="stylesheet" href="../scss/grid.css">
-    <link rel="stylesheet" href="../scss/universal.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#241113">
+    <title>Shop | Vampires in New York</title>
+    <link rel="stylesheet" href="../scss/universal.scss">
+    <link rel="stylesheet" href="../scss/theme.scss">
 </head>
 
-<body class="bodyGrid">
+<body>
     <header class="headerGrid">
-        <nav class="navGrid">
-            <ul class="listItemContainer navGrid">
-                <li class="listItemOne"><a href="index.html" class="listItemOne">Home</a></li>
-                <li class="listItemTwo"><a href="shop.html" class="listItemTwo">Shop</a></li>
-                <li class="listItemThree"><a href="comicReader.html" class="listItemThree">Comic reader</a></li>
-                <li class="listItemFour"><a href="login.html" class="listItemFour">Login</a></li>
+        <a class="brand" href="index.html">Vampires in New York</a>
+        <nav class="navGrid" aria-label="Main">
+            <ul class="listItemContainer">
+                <li><a href="comicReader.html">Read</a></li>
+                <li><a href="shop.html" aria-current="page">Shop</a></li>
+                <li><a href="login.html">Log in</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="mainGrid">
-        <p>This is the shop</p>
+    <main class="plainPage">
+        <h1>Shop</h1>
+        <p>Prints of the panels and printed editions will be sold here once chapter one is finished.</p>
     </main>
 
-    <footer class="footerGrid"></footer>
-
+    <footer class="footerGrid">Vampires in New York. Chapter one: The New Beginning.</footer>
 </body>
 
 </html>

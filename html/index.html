@@ -3,32 +3,67 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../scss/comicReader.css">
-    <link rel="stylesheet" href="../scss/grid.css">
-    <link rel="stylesheet" href="../scss/universal.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#241113">
+    <title>Vampires in New York</title>
+    <link rel="stylesheet" href="../scss/universal.scss">
+    <link rel="stylesheet" href="../scss/theme.scss">
+    <link rel="stylesheet" href="../scss/home.scss">
 </head>
 
-<body class="bodyGrid">
+<body>
     <header class="headerGrid">
-        <nav class="navGrid">
-            <ul class="listItemContainer navGrid">
-                <li class="listItemOne"><a href="index.html" class="listItemOne">Home</a></li>
-                <li class="listItemTwo"><a href="shop.html" class="listItemTwo">Shop</a></li>
-                <li class="listItemThree"><a href="comicReader.html" class="listItemThree">Comic reader</a></li>
-                <li class="listItemFour"><a href="login.html" class="listItemFour">Login</a></li>
+        <a class="brand" href="index.html" aria-current="page">Vampires in New York</a>
+        <nav class="navGrid" aria-label="Main">
+            <ul class="listItemContainer">
+                <li><a href="comicReader.html">Read</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="login.html">Log in</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="mainGrid">
-       <p>This is index.html</p>
+    <main>
+        <section class="hero">
+            <video class="heroMedia" src="/assets/marstonOnDeck_v02.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+
+            <div class="heroText">
+                <h1 class="heroTitle">Vampires in New&nbsp;York</h1>
+                <p class="heroDateline">New York Harbor, 1918</p>
+                <p class="heroLede">James Marston comes home from the war and sets himself up as a private detective. His first case takes him from a hotel room in Manhattan to a race against time in the halls of Columbia University.</p>
+                <div class="heroActions">
+                    <a class="button" href="comicReader.html">Read chapter one</a>
+                    <span class="chapterNote">Chapter one: The New Beginning</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" aria-label="How the comic works">
+            <div>
+                <h2>Two voices</h2>
+                <p>Every panel is told twice: by a narrator who sees everything, and by Marston, <span class="voiceSample">who only sees what he can bear to</span>. Show one, the other, or both.</p>
+            </div>
+            <div>
+                <h2>Panels that move</h2>
+                <p>Ships roll on the harbor, the market crowds shift, and each scene carries its own sound. Slow it down, speed it up, or turn it off.</p>
+            </div>
+            <div>
+                <h2>Read your way</h2>
+                <p>Scroll down through the pages or turn them one at a time, on a dark or paper background, in color or black and white.</p>
+            </div>
+        </section>
     </main>
 
-    <footer class="footerGrid"></footer>
+    <footer class="footerGrid">Vampires in New York. Chapter one: The New Beginning.</footer>
 
+    <script>
+        // Respect reduced motion: keep the harbor still
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const video = document.querySelector('.heroMedia');
+            video.removeAttribute('autoplay');
+            video.pause();
+        }
+    </script>
 </body>
 
 </html>

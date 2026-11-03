@@ -17,6 +17,6 @@ export default defineConfig({
     },
   },
   server: {
-    open: '/html/comicReader.html',
+    open: '/html/index.html',
   },
 });

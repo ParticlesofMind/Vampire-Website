@@ -1,182 +1,389 @@
-.bodyGrid.dark-mode {
-    background-color: #121212;
-    color: white;
+// Comic reader: arrows | comic | settings drawer
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 3fr) var(--drawer-w);
+  grid-template-areas: 'viewArea comicGrid drawer';
+  gap: 1.5rem;
+  padding-block: 1.5rem;
+  transition: grid-template-columns 0.4s ease;
 }
 
-.toolBox {
-    display: grid;
-    grid-template-columns: auto; /* Define one column */
-    grid-template-rows: 50px 50px 50px 125px 100px 0.25fr 50px 150px; /* Adjust rows to auto for content size and 1fr for remaining space */
-    position: fixed;
-    right: 0;
-    padding: 25px;
-    top: 0;
-    width: 300px; /* Adjust as needed */
+body.drawerClosed .mainGrid {
+  grid-template-columns: 1fr minmax(0, 3fr) 1fr;
+}
+
+// Page navigation arrows
+.viewArea {
+  grid-area: viewArea;
+}
+
+.navigationButtons {
+  position: sticky;
+  top: calc(var(--header-h) + 40vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navigationButtons.navHidden {
+  display: none;
+}
+
+.fixedNavigationPosition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.scrollButtons,
+.slideButtons {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+#upPageButton {
+  border-width: 0 22px 34px 22px;
+  border-color: transparent transparent var(--blood) transparent;
+
+  &:hover {
+    border-bottom-color: var(--blood-lit);
+  }
+}
+
+#downPageButton {
+  border-width: 34px 22px 0 22px;
+  border-color: var(--blood) transparent transparent transparent;
+
+  &:hover {
+    border-top-color: var(--blood-lit);
+  }
+}
+
+#prevPageButton {
+  border-width: 20px 34px 20px 0;
+  border-color: transparent var(--blood) transparent transparent;
+
+  &:hover {
+    border-right-color: var(--blood-lit);
+  }
+}
+
+#nextPageButton {
+  border-width: 20px 0 20px 34px;
+  border-color: transparent transparent transparent var(--blood);
+
+  &:hover {
+    border-left-color: var(--blood-lit);
+  }
+}
+
+// Comic
+.comicGrid {
+  grid-area: comicGrid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  min-width: 0;
+}
+
+// Pages are 10 x 15 cells: a 2:3 portrait page, sized so a whole page fits on screen
+.comicPage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  gap: 6px;
+  width: min(100%, calc((100vh - var(--header-h) - 3rem) * 2 / 3));
+  aspect-ratio: 2 / 3;
+  padding: 6px;
+  background: var(--night);
+  border: 1px solid var(--oxblood);
+  box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.6);
+
+  img,
+  video {
+    width: 100%;
     height: 100%;
-    background-color: #191a1c; /* Your color choice */
-    transition: right 0.5s;
-
-    // titles
-    .titleSetting {
-        color: white;
-        font-size: 26px;
-        padding: 10px;
-    }
-
-    .titleSettingOne {
-        grid-row: 1;
-    }
-
-    .darkModeSetting {
-        grid-row: 2;
-
-        .colorOptions {
-            padding: 10px;
-        }
-    }
-
-    .titleSettingTwo {
-        grid-row: 3;
-    }
-
-    .mediaSettingOne {
-        grid-row: 4;
-        padding: 10px;
-
-        .narrationOptions {
-            padding: 10px;
-        }
-    }
-
-    .mediaSettingTwo {
-        grid-row: 5;
-        padding: 10px;
-
-        .audioPlayOptions {
-            padding: 10px;
-        }
-    }
-
-    .mediaSettingThree {
-        grid-row: 6;
-        padding: 10px;
-
-        .playbackSpeedOptions {
-            padding: 10px;
-        }
-    }
-
-    .titleSettingThree {
-        grid-row: 7;
-    }
-    .defineExperienceSetting {
-        display: grid; 
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-row: 8;
-        padding: 10px;
-    
-        .experienceOptions {
-            padding: 10px;
-            grid-column: 1 / 3; 
-        }
-    
-        .navigationButtons { 
-            padding: 10px;
-           grid-column: 1 / 3; 
-            display: flex; 
-            gap: 10px; /* Spacing between buttons */
-            
-            .slideButtons, .scrollButtons { 
-                color: white;
-                text-decoration: none;
-                cursor: pointer;
-                font-size: 24px; /* Adjust size as needed */
-            }
-        }
-    }
-    
+    min-height: 0;
+    object-fit: cover;
+    background: var(--crypt);
+  }
 }
 
-.hidden {
-    display: none;
+body.light-mode .comicPage {
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
+// Slide: one page at a time, side by side
+.comicGrid.slideExperience {
+  flex-direction: row;
+  align-items: flex-start;
+  overflow-x: hidden;
+  gap: 0;
+  scroll-snap-type: x mandatory;
+
+  .comicPage {
+    flex: 0 0 100%;
+    width: 100%;
+    aspect-ratio: auto;
+    height: calc(100vh - var(--header-h) - 3rem);
+    scroll-snap-align: start;
+  }
+}
+
+// Narration: two voices, two typefaces
+.objectiveTextOverlay,
 .subjectiveTextOverlay {
-    position: absolute; /* Ensures overlay without affecting parent size */
-    bottom: 0; /* Position at the bottom */
-    right: 0; /* Position at the right */
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    border-left: 3px solid black; /* Black border */
-    border-top: 3px solid black; /* Black border */
-    padding: 5px; /* Padding around the text */
-    max-width: 50%; /* Set max-width to a relative size */
-    max-height: 15%;
-    text-align: left; /* Center-align text */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    font-size: 16px;
+  position: absolute;
+  max-width: 55%;
+  max-height: 40%;
+  overflow: auto;
+  padding: 0.45em 0.7em;
+  font-size: var(--step--1);
+  line-height: 1.4;
+  z-index: 2;
 }
 
+// The narrator: a printed caption box, top left of the panel
 .objectiveTextOverlay {
-    position: absolute; /* Ensures overlay without affecting parent size */
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    border-bottom: 3px solid black; /* Black border */
-    border-right: 3px solid black; /* Black border */
-
-    padding: 5px; /* Padding around the text */
-    max-width: 50%; /* Set max-width to a relative size */
-    max-height: 15%;
-    text-align: left; /* Center-align text */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    font-size: 16px;
+  top: 0;
+  left: 0;
+  background: rgba(235, 224, 201, 0.94);
+  color: var(--ink);
+  font-family: var(--font-print);
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
 }
 
-/* Other styles */
-
-#toggleButton {
-    position: fixed;
-    right: 300px; /* Adjusted to be next to the toolbox when it's open */
-    top: 50vh; /* Adjust as needed */
-    width: 20px; /* Small and non-intrusive size */
-    height: 100px;
-    cursor: pointer;
-    z-index: 1000; /* Ensure it's above other elements */
-    border: none; /* Remove default border */
-    transition: right 0.5s; /* Smooth transition */
-    background-color: #191a1c; /* Your color choice */
-    color: white;
-    border-radius: 35% 0% 0% 35%;
-}
-
-input {
-    width: 15px;
-    height: 15px;
-    color: white;
-}
-
-label {
-    color: white;
-    font-size: 20px;
-    padding: 10px;
-}
-
-.divider {
-    border: 0;
-    border-top: 0.5px solid white;
+// Marston's own voice: typed, bottom right of the panel
+.subjectiveTextOverlay {
+  bottom: 0;
+  right: 0;
+  background: rgba(21, 8, 9, 0.9);
+  color: var(--bone);
+  font-family: var(--font-typewriter);
+  border-left: 2px solid var(--blood);
+  border-top: 2px solid var(--blood);
 }
 
 .audioButton {
-    position: absolute;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white; /* Adjust as needed */
-    font-size: 24px; /* Adjust as needed */
+  position: absolute;
+  align-self: end;
+  justify-self: start;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 0.4rem;
+  display: grid;
+  place-items: center;
+  background: rgba(21, 8, 9, 0.85);
+  border: 1px solid var(--blood);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  cursor: pointer;
+  z-index: 3;
+
+  &:hover {
+    border-color: var(--blood-lit);
+  }
+
+  &[data-playing='true'] {
+    background: var(--blood);
+  }
 }
 
-#playbackSpeedSlider {
+// Color modes for the art
+.regularFilter {
+  filter: none;
+}
+
+.blackAndWhiteFilter {
+  filter: grayscale(100%);
+}
+
+.colorBlindFilter {
+  filter: contrast(150%);
+}
+
+// Settings drawer
+.toolBox {
+  position: fixed;
+  top: var(--header-h);
+  right: 0;
+  bottom: 0;
+  width: var(--drawer-w);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.5rem 1.5rem 2rem;
+  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  background: var(--crypt);
+  border-left: 1px solid var(--oxblood);
+  color: var(--bone);
+  transition: transform 0.4s ease;
+  z-index: 800;
+}
+
+body.drawerClosed .toolBox {
+  transform: translateX(100%);
+}
+
+.titleSetting {
+  font-family: var(--font-masthead);
+  font-size: var(--step-2);
+  line-height: 1;
+  color: var(--bone);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--oxblood);
+  padding-block-start: 1rem;
+}
+
+.titleSettingOne .titleSetting {
+  border-top: 0;
+  padding-block-start: 0;
+}
+
+.setting,
+.darkModeSetting,
+.comicColorOptions,
+.experienceOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.toolBox label {
+  font-size: var(--step-0);
+  color: var(--bone);
+  cursor: pointer;
+}
+
+.toolBox input[type='checkbox'],
+.toolBox input[type='radio'] {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.45rem;
+  vertical-align: -0.1em;
+  accent-color: var(--blood);
+  cursor: pointer;
+}
+
+.toolBox input[type='range'] {
+  width: 100%;
+  accent-color: var(--blood);
+}
+
+.narrationOptions,
+.audioPlayOptions {
+  padding-left: 1.45rem;
+  margin-top: 0.3rem;
+}
+
+.audioPlayOptions,
+.experienceOptions .layoutChoice {
+  display: flex;
+  gap: 1rem;
+}
+
+.fontTypeOptions {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0.5rem;
+
+  select {
     width: 100%;
-    margin: 10px 0;
+    padding: 0.35rem 0.5rem;
+    background: var(--night);
+    color: var(--bone);
+    border: 1px solid var(--oxblood);
+    font-size: var(--step--1);
+  }
+}
+
+.volumeOptions,
+.playbackSpeedOptions {
+  padding-top: 0.25rem;
+}
+
+.volumeLabels,
+.playbackSpeedLabels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--bone-dim);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+}
+
+.settingHint {
+  color: var(--bone-dim);
+  font-size: var(--step--1);
+  font-style: italic;
+}
+
+// Drawer handle
+#toggleButton {
+  position: fixed;
+  top: 50vh;
+  right: var(--drawer-w);
+  width: 1.6rem;
+  height: 5.5rem;
+  translate: 0 -50%;
+  background: var(--crypt);
+  color: var(--bone);
+  border: 1px solid var(--oxblood);
+  border-right: 0;
+  border-radius: 0.6rem 0 0 0.6rem;
+  cursor: pointer;
+  z-index: 850;
+  transition: right 0.4s ease;
+
+  &:hover {
+    color: var(--blood-lit);
+  }
+}
+
+body.drawerClosed #toggleButton {
+  right: 0;
+}
+
+// Phones and small tablets: the comic takes the full width, settings slide over it
+@media (max-width: 860px) {
+  .mainGrid,
+  body.drawerClosed .mainGrid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'comicGrid';
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+  }
+
+  .viewArea {
+    display: none;
+  }
+
+  .comicPage {
+    width: 100%;
+  }
+
+  .objectiveTextOverlay,
+  .subjectiveTextOverlay {
+    font-size: 0.72rem;
+    max-width: 70%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainGrid,
+  .toolBox,
+  #toggleButton {
+    transition: none;
+  }
 }

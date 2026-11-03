@@ -7,18 +7,20 @@
 
 let currentPage = 0;
 
-// Toggle settings overlay
+// Toggle settings drawer
+function setDrawerOpen(open) {
+    document.body.classList.toggle('drawerClosed', !open);
+    document.getElementById('toggleButton').setAttribute('aria-expanded', String(open));
+}
+
 document.getElementById('toggleButton').addEventListener('click', function() {
-    var toolbox = document.querySelector('.toolBox');
-    var toggleButton = document.getElementById('toggleButton');
-    if (toolbox.style.right === '0px' || toolbox.style.right === '') {
-        toolbox.style.right = '-300px'; // Hide toolbox
-        toggleButton.style.right = '0px'; // Move button next to the edge
-    } else {
-        toolbox.style.right = '0px'; // Show toolbox
-        toggleButton.style.right = '300px'; // Move button next to the toolbox
-    }
+    setDrawerOpen(document.body.classList.contains('drawerClosed'));
 });
+
+// On narrow screens the drawer covers the comic, so start with it closed
+if (window.matchMedia('(max-width: 860px)').matches) {
+    setDrawerOpen(false);
+}
 
 
 // Overlay text setting
@@ -72,14 +74,10 @@ document.getElementById('addTextCheckbox').addEventListener('change', function()
 
 
 
-// Toggle light mode and dark mode
+// Night (default) or paper reading background
 document.querySelectorAll('input[name="theme"]').forEach(function(elem) {
     elem.addEventListener('change', function() {
-        if (document.getElementById('darkMode').checked) {
-            document.querySelector('.bodyGrid').classList.add('dark-mode');
-        } else {
-            document.querySelector('.bodyGrid').classList.remove('dark-mode');
-        }
+        document.body.classList.toggle('light-mode', document.getElementById('lightMode').checked);
     });
 });
 
@@ -140,8 +138,9 @@ function updateAudioButtonSymbol(button) {
 function toggleAudio(src, button) {
     if (!button.audio) {
         button.audio = new Audio(src);
-        // Set loop based on current radio button setting
+        // Set loop and volume from the current settings
         button.audio.loop = document.getElementById('repeatingAudio').checked;
+        button.audio.volume = document.getElementById('volumeSlider').value / 100;
     }
 
     if (button.getAttribute('data-playing') === 'true') {
@@ -166,7 +165,7 @@ document.getElementById('addAudioCheckbox').addEventListener('change', function(
     let audioButtons = document.querySelectorAll('.audioButton');
     audioButtons.forEach(button => {
         if (this.checked) {
-            button.style.display = 'block';
+            button.style.display = '';
         } else {
             button.style.display = 'none';
             if (button.audio && button.getAttribute('data-playing') === 'true') {
@@ -384,22 +383,17 @@ document.getElementById('colorBlindMode').addEventListener('change', function() 
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const viewArea = document.querySelector('.viewArea');
-    const navButtons = document.querySelector('.navigationButtons');
+// Show or hide the page arrows
+document.getElementById('showNavigationButtons').addEventListener('change', function() {
+    document.querySelector('.navigationButtons').classList.toggle('navHidden', !this.checked);
+});
 
-    function updateButtonPosition() {
-        const rect = viewArea.getBoundingClientRect();
-
-        // Adjust these values as needed
-        navButtons.style.top = rect.top + 'px';
-        navButtons.style.left = rect.left + 'px';
-    }
-
-    // Initial position update
-    updateButtonPosition();
-
-    // Update position on resize and scroll
-    window.addEventListener('resize', updateButtonPosition);
-    window.addEventListener('scroll', updateButtonPosition);
+// Page arrows work from the keyboard too
+document.querySelectorAll('.scrollButtons, .slideButtons').forEach(function(arrow) {
+    arrow.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            arrow.click();
+        }
+    });
 });

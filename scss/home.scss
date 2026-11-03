@@ -1,0 +1,117 @@
+// Landing page: the harbor at night, the title set like a newspaper masthead over it
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: min(88vh, 54rem);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid var(--oxblood);
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  filter: grayscale(100%) contrast(1.15) brightness(0.8);
+}
+
+// Washes the black-and-white footage in blood, then sinks the bottom into the page
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero::before {
+  background: var(--blood);
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+}
+
+.hero::after {
+  background: linear-gradient(to bottom, rgba(21, 8, 9, 0.15) 30%, var(--night) 96%);
+}
+
+.heroText {
+  max-width: 62rem;
+  padding-block: clamp(2rem, 8vh, 5rem);
+  padding-left: max(clamp(16px, 6vw, 5rem), env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.heroTitle {
+  font-family: var(--font-masthead);
+  font-weight: 400;
+  font-size: var(--step-5);
+  line-height: 0.95;
+  color: var(--bone);
+  text-wrap: balance;
+  text-shadow: 0 0.06em 0.4em rgba(0, 0, 0, 0.55);
+}
+
+.heroDateline {
+  margin-top: 1.25rem;
+  font-family: var(--font-typewriter);
+  font-size: var(--step-0);
+  color: var(--bone);
+}
+
+.heroLede {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  color: var(--bone);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.chapterNote {
+  font-style: italic;
+  color: var(--bone-dim);
+}
+
+// What the reader can do
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 2rem clamp(2rem, 5vw, 4rem);
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-block: clamp(3rem, 8vh, 5rem);
+  padding-left: var(--gutter);
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+
+  h2 {
+    font-family: var(--font-masthead);
+    font-weight: 400;
+    font-size: var(--step-2);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--bone-dim);
+    max-width: 34ch;
+  }
+
+  .voiceSample {
+    display: inline;
+    font-family: var(--font-typewriter);
+    color: var(--bone);
+  }
+}

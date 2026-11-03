@@ -3,22 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vampires in New York</title>
-    <link rel="stylesheet" href="../scss/comicReader.css">
-    <link rel="stylesheet" href="../scss/grid.css">
-    <link rel="stylesheet" href="../scss/universal.css">
-    <link rel="stylesheet" href="../scss/fonts.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#241113">
+    <title>Read | Vampires in New York</title>
+    <link rel="stylesheet" href="../scss/universal.scss">
+    <link rel="stylesheet" href="../scss/theme.scss">
+    <link rel="stylesheet" href="../scss/comicReader.scss">
 </head>
 
 <body class="bodyGrid">
     <header class="headerGrid">
-        <nav class="navGrid">
-            <ul class="listItemContainer navGrid">
-                <li class="listItemOne"><a href="index.html" class="listItemOne">Home</a></li>
-                <li class="listItemTwo"><a href="shop.html" class="listItemTwo">Shop</a></li>
-                <li class="listItemThree"><a href="comicReader.html" class="listItemThree">Comic reader</a></li>
-                <li class="listItemFour"><a href="login.html" class="listItemFour">Login</a></li>
+        <a class="brand" href="index.html">Vampires in New York</a>
+        <nav class="navGrid" aria-label="Main">
+            <ul class="listItemContainer">
+                <li><a href="comicReader.html" aria-current="page">Read</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="login.html">Log in</a></li>
             </ul>
         </nav>
     </header>
@@ -28,70 +28,57 @@
 
             <!-- Navigate vertically/horizontally with buttons -->
             <div class="navigationButtons">
-
                 <div class="fixedNavigationPosition">
+                    <a id="upPageButton" class="scrollButtons" role="button" tabindex="0" aria-label="Previous page"></a>
+                    <a id="downPageButton" class="scrollButtons" role="button" tabindex="0" aria-label="Next page"></a>
 
-                    <a id="upPageButton" class="scrollButtons"></a>
-                    <a id="downPageButton" class="scrollButtons"></a>
-
-                    <a id="prevPageButton" class="slideButtons"></a>
-                    <a id="nextPageButton" class="slideButtons"></a>
-
+                    <a id="prevPageButton" class="slideButtons" role="button" tabindex="0" aria-label="Previous page"></a>
+                    <a id="nextPageButton" class="slideButtons" role="button" tabindex="0" aria-label="Next page"></a>
                 </div>
-
-
             </div>
 
-
         </aside>
-        <div class="comicGrid"> </div>
-        <aside class="toolBox">
 
+        <div class="comicGrid"></div>
+
+        <aside class="toolBox" aria-label="Reading settings">
 
             <div class="titleSettingOne">
                 <p class="titleSetting">Media</p>
             </div>
 
-
             <div class="mediaSettingOne setting">
 
                 <div class="displayText">
-
                     <!--Displays the text inside each image-->
                     <input type="checkbox" id="addTextCheckbox" checked>
-                    <label for="addTextCheckbox">Display Text</label>
+                    <label for="addTextCheckbox">Show narration</label>
 
                     <div class="narrationOptions">
-
                         <!--3rd person omniscient storyteller-->
                         <input type="checkbox" id="addObjectiveNarrationCheckbox" checked>
-                        <label for="addObjectiveNarrationCheckbox">Objective narration</label>
+                        <label for="addObjectiveNarrationCheckbox">Narrator</label>
 
                         <br>
 
-                        <!--1st person omniscient storyteller-->
+                        <!--1st person: Marston's own voice-->
                         <input type="checkbox" id="addSubjectiveNarrationCheckbox" checked>
-                        <label for="addSubjectiveNarrationCheckbox">Subjective narration</label>
+                        <label for="addSubjectiveNarrationCheckbox">Marston</label>
                     </div>
-
-
                 </div>
 
                 <div class="fontTypeOptions">
-
                     <!--Set the font size of comic text-->
-                    <label for="fontSize"></label>
-                    <select name="size" id="fontSize">
-                        <option value="">Size</option>
+                    <select name="size" id="fontSize" aria-label="Text size">
+                        <option value="">Text size</option>
                         <option value="small">Small</option>
                         <option value="normal">Normal</option>
                         <option value="large">Large</option>
                     </select>
 
                     <!--Set the font type of comic text-->
-                    <label for="fontSelection"></label>
-                    <select name="fonts" id="fontSelection">
-                        <option value="">Font</option>
+                    <select name="fonts" id="fontSelection" aria-label="Typeface">
+                        <option value="">Period type</option>
                         <option value="roboto">Roboto</option>
                         <option value="lato">Lato</option>
                         <option value="openSans">Open Sans</option>
@@ -103,78 +90,76 @@
             <div class="mediaSettingTwo setting">
                 <div class="playAudio">
                     <input type="checkbox" id="addAudioCheckbox" checked>
-                    <label for="addAudioCheckbox">Show Audio Button</label>
+                    <label for="addAudioCheckbox">Show sound buttons</label>
 
                     <div class="audioPlayOptions">
-                        <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
-                        <label for="repeatingAudio">Repeat</label>
-
-                        <input type="radio" id="singleAudio" name="audio" value="single">
-                        <label for="singleAudio">Single</label>
+                        <span>
+                            <input type="radio" id="repeatingAudio" name="audio" value="repeating" checked>
+                            <label for="repeatingAudio">Loop</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="singleAudio" name="audio" value="single">
+                            <label for="singleAudio">Play once</label>
+                        </span>
                     </div>
                 </div>
 
                 <!--Controls the volume of outgoing sound-->
                 <div class="volumeOptions">
-                    <input type="range" id="volumeSlider" min="0" max="100" step="20" value="0">
-                    <div class="volumeLabels">
-                        <p class="volumeLabel">0</p>
-                        <p class="volumeLabel">20</p>
-                        <p class="volumeLabel">40</p>
-                        <p class="volumeLabel">60</p>
-                        <p class="volumeLabel">80</p>
-                        <p class="volumeLabel">100</p>
+                    <label for="volumeSlider">Volume</label>
+                    <input type="range" id="volumeSlider" min="0" max="100" step="20" value="60">
+                    <div class="volumeLabels" aria-hidden="true">
+                        <span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span>
                     </div>
                 </div>
             </div>
 
-            <!--Plays the animation of mp3 media-->
+            <!--Plays the animation of mp4 media-->
             <div class="mediaSettingThree setting">
-                <input type="checkbox" id="addAnimationCheckbox" checked>
-                <label for="addAnimationCheckbox">Play Animation</label>
-
-                <div class="playbackSpeedOptions">
-                    <input type="range" id="playbackSpeedSlider" min="0.75" max="1.25" step="0.25" value="1.0">
-                    <div class="playbackSpeedLabels">
-                        <p class="playbackSpeedSlow">0.75</p>
-                        <p class="playbackSpeedNormal">1.0</p>
-                        <p class="playbackSpeedFast">1.25</p>
-                    </div>
+                <div>
+                    <input type="checkbox" id="addAnimationCheckbox" checked>
+                    <label for="addAnimationCheckbox">Play animations</label>
                 </div>
 
+                <div class="playbackSpeedOptions">
+                    <label for="playbackSpeedSlider">Animation speed</label>
+                    <input type="range" id="playbackSpeedSlider" min="0.75" max="1.25" step="0.25" value="1.0">
+                    <div class="playbackSpeedLabels" aria-hidden="true">
+                        <span>0.75</span><span>1.0</span><span>1.25</span>
+                    </div>
+                </div>
             </div>
 
             <div class="titleSettingTwo">
                 <p class="titleSetting">Colors</p>
             </div>
 
-            <!--Set background color to white or black-->
+            <!--Night or paper reading background-->
             <div class="darkModeSetting">
-
-                <input type="radio" id="lightMode" name="theme" value="light" checked>
-                <label for="lightMode">Light background</label>
-
-                <br>
-
-                <input type="radio" id="darkMode" name="theme" value="dark">
-                <label for="darkMode">Dark background</label>
+                <span>
+                    <input type="radio" id="darkMode" name="theme" value="dark" checked>
+                    <label for="darkMode">Night background</label>
+                </span>
+                <span>
+                    <input type="radio" id="lightMode" name="theme" value="light">
+                    <label for="lightMode">Paper background</label>
+                </span>
             </div>
 
             <div class="comicColorOptions">
-                <input type="radio" id="regularMode" name="colorMode" value="regular" checked>
-                <label for="regularMode">Regular mode</label>
-
-                <br>
-
-                <input type="radio" id="blackAndWhiteMode" name="colorMode" value="blackAndWhite">
-                <label for="blackAndWhiteMode">Black and white mode</label>
-
-                <br>
-
-                <input type="radio" id="colorBlindMode" name="colorMode" value="colorBlind">
-                <label for="colorBlindMode">Color blind mode </label>
+                <span>
+                    <input type="radio" id="regularMode" name="colorMode" value="regular" checked>
+                    <label for="regularMode">Full color</label>
+                </span>
+                <span>
+                    <input type="radio" id="blackAndWhiteMode" name="colorMode" value="blackAndWhite">
+                    <label for="blackAndWhiteMode">Black and white</label>
+                </span>
+                <span>
+                    <input type="radio" id="colorBlindMode" name="colorMode" value="colorBlind">
+                    <label for="colorBlindMode">High contrast</label>
+                </span>
             </div>
-
 
             <div class="titleSettingThree">
                 <p class="titleSetting">Layout</p>
@@ -182,28 +167,31 @@
 
             <!-- Set comic to scroll (vertical) or slide (horizontal)-->
             <div class="experienceOptions">
-                <input type="radio" id="scrollExperience" name="experience" value="scroll" checked>
-                <label for="scrollExperience">Scroll</label>
+                <div class="layoutChoice">
+                    <span>
+                        <input type="radio" id="scrollExperience" name="experience" value="scroll" checked>
+                        <label for="scrollExperience">Scroll</label>
+                    </span>
+                    <span>
+                        <input type="radio" id="slideExperience" name="experience" value="slide">
+                        <label for="slideExperience">Turn pages</label>
+                    </span>
+                </div>
 
-                <input type="radio" id="slideExperience" name="experience" value="slide">
-                <label for="slideExperience">Slide</label>
-
-                <br>
-
-                <input type="checkbox" id="showNavigationButtons" name="showButons" value="showButons">
-                <label for="showNavigationButtons">Show navigation buttons</label>
-
+                <span>
+                    <input type="checkbox" id="showNavigationButtons" name="showButtons" value="showButtons" checked>
+                    <label for="showNavigationButtons">Show page arrows</label>
+                </span>
             </div>
 
-
         </aside>
-        <button id="toggleButton">⇄</button>
+        <button id="toggleButton" type="button" aria-label="Show or hide reading settings" aria-expanded="true">⇄</button>
     </main>
 
-    <footer class="footerGrid"></footer>
+    <footer class="footerGrid">Vampires in New York. Chapter one: The New Beginning.</footer>
 
+    <script src="../js/comicSettings.js"></script>
+    <script src="../js/layout.js"></script>
 </body>
-<script src="../js/comicSettings.js"></script>
-<script src="../js/layout.js"></script>
 
 </html>
